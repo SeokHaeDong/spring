@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="<c:url value="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.js"/>"></script>
+
 <meta charset="UTF-8">
 <title></title>
  <%

@@ -53,12 +53,12 @@ public class HomeController {
 	@GetMapping("/free_board")
 	public void list(Criteria cri, Model model) {
 
-		log.info("list: " + cri);
+		log.info("free_board: " + cri);
 		
 		// 게시판의 글은 지속적으로 등록, 삭제 되기에 매번 list를 호출 할때 total을 구해와야 한다. 
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
-		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("free_board", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 	}
