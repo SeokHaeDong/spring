@@ -8,6 +8,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<script>
+//썸네일 파일명을 가져오는 함수
+function getThumbFileName(fullFilePath) {
+	var arrString = fullFilePath.split("/");
+	console.log(arrString);
+	arrString.splice(-1, 1, "s_" + arrString[arrString.length - 1]);
+	return arrString.join("/");
+}
+</script>
 
 
 <title>Crispy Restaurant Category Flat Bootstrap Responsive Website Template | Blog :: W3layouts</title>
@@ -51,21 +60,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <section class="blog py-5">
 	<div class="container py-md-3">
 		<h2 class="heading text-center mb-sm-5 mb-4">자유 게시판 </h2>
+				<button id='regBtn' type="button" class="btn btn-xs pull-right">새로운 글 작성하기</button>
 		<div class="row blog-grids head">
 		<c:forEach items="${free_board}" var="board">
 			<div class="col-lg-7 mb-lg-5 blog-img1">
-				<img src="${pageContext.request.contextPath}/resources/images/blog1.jpg" alt="" class="img-fluid" onerror="javascript:src={${pageContext.request.contextPath}/resources/images/blog1.jpg}"/>
-				<a href="single.JSP">Blog #<c:out value="${board.bno }"/></a>
+
+				<img src="<c:out value='${pageContext.request.contextPath}'/>/resources/upload/${board.file_1}" onerror="this.src='/resources/images/blog1.jpg'">
+				<a href="single.JSP">자유글 #<c:out value="${board.bno }"/></a>
+				
+
 			</div>
+			
 			<div class="col-lg-5 mb-lg-5 mb-4">
+				
 				<h5><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></h5>
 				<h4 class="my-3"><a class='move' href='<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></h4>
-				<p class="my-3"><c:out value="${board.content}" /></p>
-				<a href="single.JSP" class="btn-banner"> View Post <c:out value="${board.bno }"/></a>
-				<c:out value="${board.content }"/>
+				<p class="my-3" id="content_hidden"><c:out value="${board.content}"  /></p>
+				<a href='<c:out value="${board.bno}"/>' class="btn-banner move"> 상세보기 <c:out value="${board.bno }"/></a>
+				
 			</div>
 			</c:forEach>
-			<!--  Pagination 시작 -->
+		</div>
+		
+		
+		
+		
+				<!--  Pagination 시작 -->
 				<div class='pull-right'>
 					<ul class="pagination">
 						
@@ -79,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</li>
 						</c:forEach>
 
-						<c:if test="${pageMaker.next}">
+						<c:if test="${pageMaker.next}">+
 							<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
 						</c:if>
 
@@ -92,32 +112,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				</form>
 				<!-- 페이징 Form 끝 -->
-				
-				<!-- Modal  추가 -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-						</div>
-						<div class="modal-body">처리가 완료되었습니다.</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Save
-								changes</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
-				
-		</div>
 	</div>
 </section>
 			
@@ -170,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/admin/register";
+			self.location = "/free_board_register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -187,27 +181,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$(".move").on("click",function(e) {
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/admin/get");
+			actionForm.attr("action", "/single");
 			actionForm.submit();
 		});
 		
-		// 검색 버튼 클릭 이벤트
-		var searchForm = $("#searchForm");
-		$("#searchForm button").on("click",	function(e) {
-			if (!searchForm.find("option:selected").val()) {
-				alert("검색종류를 선택하세요");
-				return false;
-			}
 
-			if (!searchForm.find("input[name='keyword']").val()) {
-				alert("키워드를 입력하세요");
-				return false;
-			}
-			
-			searchForm.find("input[name='pageNum']").val("1");
-			e.preventDefault();
-			searchForm.submit();
-		});
 	});
+
+
+	
 </script>
+
 

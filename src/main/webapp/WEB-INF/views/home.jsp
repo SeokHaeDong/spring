@@ -7,9 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%@page language="java"  pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+
 <title>Crispy Restaurant Category Flat Bootstrap Responsive Website Template | Home :: W3layouts</title>
 
 <!-- for-mobile-apps -->
@@ -27,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
-	
+    
 	<!-- css files -->
 
 	
@@ -46,8 +45,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 request.setCharacterEncoding("utf-8");
 %>
 	
-</head>
-<body>
+
+
 <%@include file="header.jsp" %>
 <!-- banner -->
 <div class="banner" id="home">
@@ -304,6 +303,3 @@ request.setCharacterEncoding("utf-8");
 	</a>
 </div>
 <!-- move top -->
-
-</body>
-</html>

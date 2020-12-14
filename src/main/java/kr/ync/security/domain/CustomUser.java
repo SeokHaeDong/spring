@@ -13,8 +13,6 @@ import lombok.Getter;
 
 @Getter
 public class CustomUser extends User {
-	
-	BCryptPasswordEncoder passwordEncoder;
 
 	private static final long serialVersionUID = 1L;
 

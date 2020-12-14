@@ -101,16 +101,16 @@ public class BoardControllerTests {
 //		log.info(resultPage);
 //	}
 
-	@Test
-	public void testListPaging() throws Exception {
-		log.info("===================================================================");
-		log.info(mockMvc.perform(
-				MockMvcRequestBuilders.get("/board/list")
-				.param("pageNum", "2")
-				.param("amount", "10"))
-				.andReturn().getModelAndView().getModelMap());
-		log.info("==================================================================");
-	}
+//	@Test
+//	public void testListPaging() throws Exception {
+//		log.info("===================================================================");
+//		log.info(mockMvc.perform(
+//				MockMvcRequestBuilders.get("/board/list")
+//				.param("pageNum", "2")
+//				.param("amount", "10"))
+//				.andReturn().getModelAndView().getModelMap());
+//		log.info("==================================================================");
+//	}
 
 }
 

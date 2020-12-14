@@ -3129,6 +3129,10 @@ tbody.collapse.show {
   transition: height 0.35s ease;
 }
 
+.pull-right{
+	box-sizing: border-box;
+}
+
 .dropup,
 .dropdown {
   position: relative;
@@ -7484,8 +7488,16 @@ button.bg-dark:focus {
 .mt-3,
 .my-3 {
   margin-top: 1rem !important;
+  
 }
 
+#content_hidden{
+		 	  width:70px;
+      padding:0 5px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+}
 .mr-3,
 .mx-3 {
   margin-right: 1rem !important;
@@ -8971,5 +8983,5 @@ a.text-dark:hover, a.text-dark:focus {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+  
 }
-/*# sourceMappingURL=bootstrap.css.map */

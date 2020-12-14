@@ -14,6 +14,7 @@ function getThumbFileName(fullFilePath) {
 	return arrString.join("/");
 }
 </script>
+
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Board Read   </h1>
@@ -30,14 +31,12 @@ function getThumbFileName(fullFilePath) {
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-          <div class="form-group">
-          <label>Bno</label> <input class="form-control" name='bno'
-            value='<c:out value="${board.bno }"/>' readonly="readonly">
-        </div>
+         <div class="form-group">
+          	<label>Bno</label> <input class="form-control" name='bno' value='<c:out value="${board.bno }"/>' readonly="readonly">
+       	</div>
 
         <div class="form-group">
-          <label>Title</label> <input class="form-control" name='title'
-            value='<c:out value="${board.title }"/>' readonly="readonly">
+          <label>Title</label> <input class="form-control" name='title' value='<c:out value="${board.title }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
@@ -60,9 +59,9 @@ function getThumbFileName(fullFilePath) {
 						<a href="/resources/upload/${board[t]}" target="_blank">
 						<img src="/resources/upload/${board[t]}" id="thumb_${i}"></a>
 			        </div>
-			        <script>
-			        document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
-					</script>
+				        <script>
+				        document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
+						</script>
 		        </c:if>
 		</c:forEach>
 
@@ -92,39 +91,7 @@ function getThumbFileName(fullFilePath) {
 </div>
 <!-- /.row -->
 
-<div class='row'>
 
-  <div class="col-lg-12">
-
-    <!-- /.panel -->
-    <div class="panel panel-default">
-      
-      <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-        <sec:authorize access="isAuthenticated()">
-	        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
-        </sec:authorize>
-      </div>      
-      
-      
-      <!-- /.panel-heading -->
-      <div class="panel-body">        
-      
-      	<!-- 댓글 목록 출력 부분 -->
-        <ul class="chat">
-
-        </ul>
-        <!-- ./ end ul -->
-      </div>
-      <!-- /.panel .chat-panel -->
-
-	<div class="panel-footer"></div>
-
-
-		</div>
-  </div>
-  <!-- ./ end row -->
-</div>
 
 
 

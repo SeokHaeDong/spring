@@ -21,12 +21,12 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 
-//	@Test
-//	public void testGetList() {
-//
-//		mapper.getList().forEach(board -> log.info("board 객체 내용 : " + board));
-//
-//	}
+	@Test
+	public void testGetList() {
+
+		mapper.getList().forEach(board -> log.info("board 객체 내용 : " + board));
+
+	}
 //
 //	@Test
 //	public void testInsert() {
@@ -112,17 +112,17 @@ public class BoardMapperTests {
 //
 //	}
 	
-	  @Test
-	  public void testSearch() {
-
-	    Criteria cri = new Criteria();
-	    cri.setKeyword("키워드");
-	    cri.setType("TCW");
-
-	    List<BoardVO> list = mapper.getListWithPaging(cri);
-
-	    list.forEach(board -> log.info(board));
-	  }
+//	  @Test
+//	  public void testSearch() {
+//
+//	    Criteria cri = new Criteria();
+//	    cri.setKeyword("키워드");
+//	    cri.setType("TCW");
+//
+//	    List<BoardVO> list = mapper.getListWithPaging(cri);
+//
+//	    list.forEach(board -> log.info(board));
+//	  }
 
 
 }

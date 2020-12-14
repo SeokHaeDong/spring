@@ -41,8 +41,7 @@
 		</selectKey>
 
 		insert into tbl_board (bno,title,content, writer, file_1, file_2, file_3)
-		values (#{bno},
-		#{title}, #{content}, #{writer}, #{file_1}, #{file_2}, #{file_3})
+		values (#{bno}, #{title}, #{content}, #{writer}, #{file_1}, #{file_2}, #{file_3})
 	</insert>
 	
 	<select id="read" resultType="kr.ync.domain.BoardVO">

@@ -4,10 +4,12 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@page language="java"  pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+
 <title>Crispy Restaurant Category Flat Bootstrap Responsive Website Template | Single :: W3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +26,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    
+    <script>
+//썸네일 파일명을 가져오는 함수
+function getThumbFileName(fullFilePath) {
+	var arrString = fullFilePath.split("/");
+	console.log(arrString);
+	arrString.splice(-1, 1, "s_" + arrString[arrString.length - 1]);
+	return arrString.join("/");
+}
+</script>
 	
 	<!-- css files -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
@@ -31,70 +43,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 	
-	<!-- google fonts -->
-	<link href="fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-	<link href="fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-	<!-- //google fonts -->
-	
-</head>
-<body>
 
-<!-- top header -->
-<div class="header-top">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
-				<ul class="d-lg-flex header-w3_pvt">
-					<li class="mr-lg-3">
-						<span class="fa fa-envelope-open"></span>
-						<a href="mailto:info@example.com" class="">info@example.com</a>
-					</li>
-					<li>
-						<span class="fa fa-phone"></span>
-						<p class="d-inline">Call Us +12 345 678</p>
-					</li>
-				</ul>
-			</div>
-			<div class="col-sm-6 header-right-w3_pvt">
-				<ul class="d-lg-flex header-w3_pvt justify-content-lg-end">
-					<li class="">
-						<span class=""><span class="fas fa-clock"></span>Mon - Sun : 8:30am to 9:30pm</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //top header -->
 
-<!-- //header -->
-<header class="py-sm-3 pt-3 pb-2">
-	<div class="container">
-			<div id="logo">
-				<h1> <a href="home.JSP"><span class="fa fa-cutlery" aria-hidden="true"></span> Crispy</a></h1>
-			</div>
-		<!-- nav -->
-		<nav class="d-lg-flex">
 
-			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-			<input type="checkbox" id="drop" />
-			<ul class="menu mt-2 ml-auto">
-				<li class="active"><a href="home.JSP">Home</a></li>
-				<li class=""><a href="about.JSP">About Us</a></li>
-				<li class=""><a href="services.JSP">Services</a></li>
-				<li class=""><a href="gallery.JSP">Gallery</a></li>
-				<li class=""><a href="blog.JSP">Blog</a></li>
-				<li class=""><a href="contact.JSP">Contact Us</a></li>
-			</ul>
-			<div class="login-icon ml-2">
-				<a class="user" href="#"> Call Us</a>
-			</div>
-		</nav>
-		<div class="clear"></div>
-		<!-- //nav -->
-	</div>
-</header>
-<!-- //header -->
+
+<%@include file="header.jsp" %>
 
 <!-- banner -->
 <div class="innerpage-banner" id="home">
@@ -106,297 +59,82 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- single -->
 <section class="bottom-banner-w3layouts py-5">
 	<div class="container py-md-3">
-		<h2 class="heading text-center mb-sm-5 mb-4">Single Page </h2>
+		<h2 class="heading text-center mb-sm-5 mb-4">게시글 상세 보기 </h2>
 		<div class="row inner-sec-w3ls-agileinfo">
 			<!--left-->
 			<div class="col-lg-8 left-blog-info text-left">
 					<div class="card">
 						<a href="single.JSP">
-							<img src="images/bg.jpg" class="card-img-top img-fluid" alt="">
+							<label>Title</label> <input class="form-control" name='title' value='<c:out value="${board.title }"/>' readonly="readonly">
 						</a>
 						<div class="card-body">
 							<ul class="blog-icons my-4">
 								<li>
-									<a href="#">
-										<span class="fa fa-calendar"></span> Nov 8 .2018</a>
+									<a><span class="fa fa-calendar"></span><c:out value="${board.updateDate}"/></a>
+									<a></a>
 								</li>
-								<li class="mx-2">
-									<a href="#">
-										<span class="fa fa-comment"></span> 21</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="fa fa-eye"></span> 2000</a>
-								</li>
-
 							</ul>
+							<a>작성자 : <c:out value="${board.writer}"/></a>
 							<h5 class="card-title ">
-								<a href="single.JSP">Blog Post Title</a>
+								<c:out value="${board.title }"/>
 							</h5>
-							<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt,Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore et dolore magna aliqua uta enim ad minim ven iam quis nostrud exercitation ullamco labor nisi ut aliquip exea commodo consequat duis aute irudre dolor in elit sed uta labore dolore reprehender.. </p>
-							<div class="read inner mt-4">
-								<a href="single.JSP" class="btn btn-sm animated-button victoria-two">Read More</a>
-							</div>
+							<p class="card-text"><c:out value="${board.content }"/></p>
+
 
 						</div>
 					</div>
-					<div class="comment-top">
-						<h4>Comments</h4>
-						<div class="media">
-							<img src="images/ser1.jpg" alt="" class="img-fluid rounded">
-							<div class="media-body">
-								<h5 class="mt-sm-0 mt-3">Joseph Goh</h5>
-								<p>Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-									Cras a ornare elit.</p>
-
-							</div>
-						</div>
-						<div class="media">
-							<img src="images/ser2.jpg" alt="" class="img-fluid rounded">
-							<div class="media-body">
-								<h5 class="mt-sm-0 mt-3">Richard Spark</h5>
-								<p>Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-									Cras a ornare elit.</p>
-							</div>
-						</div>
-					</div>
-					<div class="comment-top">
-						<h4>Leave a Comment</h4>
-						<div class="comment-bottom">
-							<form action="#" method="post">
-								<input class="form-control" type="text" name="Name" placeholder="Name" required="">
-								<input class="form-control" type="email" name="Email" placeholder="Email" required="">
-
-								<input class="form-control" type="text" name="Subject" placeholder="Subject" required="">
-
-								<textarea class="form-control" name="Message" placeholder="Message..." required=""></textarea>
-								<button type="submit" class="btn btn-primary submit">Submit</button>
-							</form>
-						</div>
-					</div>
-
 			</div>
 			<!--//left-->
 			<!--right-->
 			<aside class="col-lg-4 right-blog-con text-left">
 				<div class="right-blog-info text-left">
 					<div class="tech-btm">
-						<img src="images/bg1.jpg" class="card-img-top img-fluid rounded" alt="">
-					</div>
-					<div class="tech-btm">
-						<h4>Sign up to our newsletter</h4>
-						<p>Pellentesque dui, non felis. Maecenas male </p>
-						<form action="#" method="post">
-							<input class="form-control" type="email" placeholder="Email" required="">
-							<input class="form-control" type="submit" value="Subscribe">
-						</form>
-
-					</div>
-					<div class="tech-btm">
-						<h4>Categories</h4>
-						<ul class="list-group single">
-							<li class="list-group-item d-flex justify-content-between align-items-center">
-								Cras justo odio
-								<span class="badge badge-primary badge-pill">14</span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between align-items-center">
-								Dapibus ac facilisis in
-								<span class="badge badge-primary badge-pill">2</span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between align-items-center">
-								Morbi leo risus
-								<span class="badge badge-primary badge-pill">1</span>
-							</li>
-						</ul>
-					</div>
-					<div class="tech-btm">
-						<h4>Top stories of the week</h4>
-
-						<div class="blog-grids row mb-3">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.JSP">
-									<img src="images/blog1.jpg" class="card-img-top img-fluid rounded" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-
-								<h5>
-									<a href="single.JSP">Pellentesque dui, non felis male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<span class="fa fa-clock-o"></span> 8 Nov, 2018</span>
-								</div>
-							</div>
-
-						</div>
-						<div class="blog-grids row mb-3">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.JSP">
-									<img src="images/blog2.jpg" class="card-img-top img-fluid rounded" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-								<h5>
-									<a href="single.JSP">Pellentesque dui, non felis male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<span class="fa fa-clock-o"></span> 8 Nov, 2018</span>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="tech-btm widget_social text-left">
-						<h4>Stay Connect</h4>
-						<ul>
-
-							<li>
-								<a class="twitter" href="#">
-									<span class="fa fa-twitter"></span>
-									<span class="count">317K</span> Twitter Followers</a>
-							</li>
-							<li>
-								<a class="facebook" href="#">
-									<span class="fa fa-facebook"></span>
-									<span class="count">218k</span> Facebook Followers</a>
-							</li>
-							<li>
-								<a class="dribble" href="#">
-									<span class="fa fa-dribbble"></span>
-
-									<span class="count">215k</span> Dribble Followers</a>
-							</li>
-							<li>
-								<a class="pin" href="#">
-									<span class="fa fa-pinterest"></span>
-									<span class="count">190k</span> Pinterest Followers</a>
-							</li>
-
-						</ul>
-					</div>
-					<div class="tech-btm">
-						<h4>Recent Posts</h4>
-
-						<div class="blog-grids row mb-3 text-left">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.JSP">
-									<img src="images/blog1.jpg" class="card-img-top img-fluid rounded" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-
-								<h5>
-									<a href="single.JSP">Pellentesque dui, non felis male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<span class="fa fa-clock-o"></span> 8 Nov, 2018</span>
-								</div>
-							</div>
-
-						</div>
-						<div class="blog-grids row mb-3 text-left">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.JSP">
-									<img src="images/blog2.jpg" class="card-img-top img-fluid rounded" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-
-								<h5>
-									<a href="single.JSP">Pellentesque dui, non felis male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<span class="fa fa-clock-o"></span> 8 Nov, 2018</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
+						<img src="" class="card-img-top img-fluid rounded" alt="">
 					</div>
 				</div>
 			</aside>
 			<!--//right-->
 		</div>
+			<sec:authentication property="principal" var="pinfo"/>
+<sec:authorize access="isAuthenticated()">
+	<c:if test="${pinfo.username eq board.writer}">
+		<button data-oper='modify' class="btn btn-default">Modify</button>
+	</c:if>
+</sec:authorize>
+<button data-oper='list' class="btn btn-info">List</button>
+
+<form id='operForm' action="/admin/modify" method="get">
+  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+</form>
 	</div>
+
 </section>
 <!-- //contact -->
 
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  var operForm = $("#operForm"); 
+  
+  $("button[data-oper='modify']").on("click", function(e){
+    
+    operForm.attr("action","/single_modify").submit();
+    
+  });
+  
+    
+  $("button[data-oper='list']").on("click", function(e){
+    
+    operForm.find("#bno").remove();
+    operForm.attr("action","/free_board")
+    operForm.submit();
+    
+  });  
+});
+</script>
 
-<!-- footer -->
-<footer class="py-5">
-	<div class="container py-sm-3">
-		<div class="row footer-grids">
-			<div class="col-lg-3 col-sm-6 mb-lg-0 mb-sm-5 mb-4">
-				<h4 class="mb-4"><span class="fa fa-cutlery"></span> Crispy</h4>
-				<p class="mb-3">Onec Consequat sapien ut cursus rhoncus. Nullam dui mi, vulputate ac metus semper quis luctus sed.</p>
-				<h5>Trusted by <span>500+ People</span> </h5>
-			</div>
-			<div class="col-lg-3 col-sm-6 mb-md-0 mb-sm-5 mb-4">
-				<h4 class="mb-4">Address Info</h4>
-				<p><span class="fa mr-2 fa-map-marker"></span>64d canal street TT 3356 <span>Newyork, NY.</span></p>
-				<p class="phone py-2"><span class="fa mr-2 fa-phone"></span> +1(12) 123 456 789 </p>
-				<p><span class="fa mr-2 fa-envelope"></span><a href="mailto:info@example.com">info@example.com</a></p>
-			</div>
-			<div class="col-lg-2 col-sm-6 mb-lg-0 mb-sm-5 mb-4">
-				<h4 class="mb-4">Quick Links</h4>
-				<ul>
-					<li><a href="#">Order Online</a></li>
-					<li class="my-2"><a href="#">Healthy Crispy</a></li>
-					<li><a href="#">Support Helpline</a></li>
-					<li class="mt-2"><a href="#">Privacy Ploicy</a></li>
-				</ul>
-			</div>
-			<div class="col-lg-4 col-sm-6">
-				<h4 class="mb-4">Subscribe Us</h4>
-				<p class="mb-3">Subscribe to our newsletter</p>
-				<form action="#" method="post" class="d-flex">
-					<input type="email" id="email" name="EMAIL" placeholder="Enter your email here" required="">
-					<button type="submit" class="btn">Subscribe</button>
-				</form>
-				<div class="icon-social mt-3">
-					<a href="#" class="button-footr">
-						<span class="fa mx-2 fa-facebook"></span>
-					</a>
-					<a href="#" class="button-footr">
-						<span class="fa mx-2 fa-twitter"></span>
-					</a>
-					<a href="#" class="button-footr">
-						<span class="fa mx-2 fa-dribbble"></span>
-					</a>
-					<a href="#" class="button-footr">
-						<span class="fa mx-2 fa-pinterest"></span>
-					</a>
-					<a href="#" class="button-footr">
-						<span class="fa mx-2 fa-google-plus"></span>
-					</a>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<!-- //footer -->
-
-<!-- copyright -->
-<div class="copyright">
-	<div class="container py-4">
-		<div class=" text-center">
-			<p>Â© 2019 Crispy. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a> </p>
-		</div>
-	</div>
-</div>
-<!-- //copyright -->
-		
-<!-- move top -->
-<div class="move-top text-right">
-	<a href="#home" class="move-top"> 
-		<span class="fa fa-angle-up  mb-3" aria-hidden="true"></span>
-	</a>
-</div>
-<!-- move top -->
-
-</body>
-</html>
+<%@include file="footer.jsp" %>
